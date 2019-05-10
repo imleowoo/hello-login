@@ -1,6 +1,6 @@
 # Fuck Login !
 
-[![GitHub stars](https://img.shields.io/github/stars/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/stargazers)[![GitHub forks](https://img.shields.io/github/forks/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/network)[![GitHub issues](https://img.shields.io/github/issues/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/issues)[![GitHub license](https://img.shields.io/github/license/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login)[![Email](https://img.shields.io/badge/email-Leo-orange.svg)](mailto:imwoolei@outlook.com)
+[![GitHub stars](https://img.shields.io/github/stars/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/stargazers)	[![GitHub forks](https://img.shields.io/github/forks/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/network)	[![GitHub issues](https://img.shields.io/github/issues/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/issues)	[![GitHub license](https://img.shields.io/github/license/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login)	[![Email](https://img.shields.io/badge/email-Leo-orange.svg)](mailto:imwoolei@outlook.com)
 
 ### 1.介绍
 
