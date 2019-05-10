@@ -1,8 +1,6 @@
-# Fuck-Login !
+# Fuck Login !
 
-> 2019-04-29 新增头条、搜狐、凤凰、豆瓣四个站点的登录脚本
->
-> 2019-03-21 给自己定个小计划，每周更新一个站点的登陆脚本
+[![GitHub stars](https://img.shields.io/github/stars/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/stargazers)[![GitHub forks](https://img.shields.io/github/forks/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/network)[![GitHub issues](https://img.shields.io/github/issues/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/issues)[![GitHub license](https://img.shields.io/github/license/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login)[![Email](https://img.shields.io/badge/email-Leo-orange.svg)](mailto:imwoolei@outlook.com)
 
 ### 1.介绍
 
@@ -64,13 +62,13 @@ class LoginWebsiteName:
 if __name__ == '__main__':
     test_name = 'your username'
     test_password = 'your password'
-    login_obj = LoginWebsiteName(username=test_name, password=test_password)
+    loginer = LoginWebsiteName(username=test_name, password=test_password)
     # 开始执行登录操作
-    login_result = login_obj.login()
+    login_result = loginer.login()
     # 获取用户信息
-    user_info = login_obj.get_user_info()
+    user_info = loginer.get_user_info()
     # 获取登录状态cookies
-    cookies = login_obj.get_login_cookies()
+    cookies = loginer.get_login_cookies()
 ```
 
 
