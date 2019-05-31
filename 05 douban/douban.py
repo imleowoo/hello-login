@@ -1,7 +1,7 @@
 import requests
 
 
-class LoginWebsiteName:
+class LoginDouban:
     """
     豆瓣站点登录
     - 无验证码，密码明文提交
@@ -96,13 +96,13 @@ class LoginWebsiteName:
 if __name__ == '__main__':
     test_name = 'your username'
     test_password = 'your password'
-    login_obj = LoginWebsiteName(username=test_name, password=test_password)
+    login_obj = LoginDouban(username=test_name, password=test_password)
     # 开始执行登录操作
     login_result = login_obj.login()
-    print(login_result)
+    print('登录结果>>', login_result)
     # 获取用户信息
     user_info = login_obj.get_user_info()
-    print(user_info)
+    print('用户信息>>', user_info)
     # 获取登录状态cookies
     cookies = login_obj.get_login_cookies()
-    print(cookies)
+    print('Cookies>>', cookies)

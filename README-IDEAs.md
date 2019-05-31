@@ -66,3 +66,55 @@
 
 1. 账号密码均未做任何加密处理，并且无验证码出现。
 
+### 06 itouchtv-触电新闻媒体平台
+
+1. 采用`PC-Web`页面完成，账号密码均未做加密处理；
+
+2. 出这个站点的原因是因为在登录之后，进行其它操作时需要生成`sign`值需要进行两次加密，并且`GET`和`POST`请求生成`sign`方式不一致。
+
+   - `sign`是由登录后获取的`token`，`useId`以及当前的`13位毫米时间戳`组合后，先经过`md5`加密后生成的`32`位字符串，再经过`sha1`加密生成`40`位字符串；
+
+   - 如果是`POST`请求需要将`form-data`的数据转换成字典类型后根据`key`值排正序后，所有`key+value`拼接成字符串，一起混入进行加密生成`sign`
+
+     ```python
+     from hashlib import md5, sha1
+     
+     
+     def get_sign(token, user_id, timestamp_ms):
+         """
+         GET请求时sign的生成方式
+         :param token: 登录获取的token
+         :param user_id: 登录可获取的userId
+         :param timestamp_ms: 13位毫秒时间戳
+         :return:
+         """
+         # get请求时明文字符串组成
+         get_method_clear_text_format = '{token}{user_id}{timestamp_ms}'
+         clear_text = get_method_clear_text_format.format(token=token, user_id=user_id, timestamp_ms=timestamp_ms)
+         md5_text = md5(clear_text.encode(encoding='UTF-8')).hexdigest()
+         sha1_text = sha1(md5_text.encode('utf-8')).hexdigest()
+         return sha1_text
+     
+     
+     def post_sign(token, user_id, timestamp_ms, post_form_data):
+         """
+         POST请求时sign的生成方式
+         :param token: 登录获取的token
+         :param user_id: 登录可获取的userId
+         :param timestamp_ms: 13位毫秒时间戳
+         :param post_form_data: POST请求时提交的表单数据
+         :return:
+         """
+         # POST请求时明文字符串组成
+         post_method_clear_text_format = '{token}{user_id}{content_str}{timestamp_ms}'
+         # 将表单数据按key排序之后再组合成字符串
+         sorted_items = sorted(post_form_data.items(), key=lambda t: t[0], reverse=False)
+         content_str = ''.join([str(k) + str(v) for k, v in sorted_items])
+         clear_text = post_method_clear_text_format.format(token=token, user_id=user_id, content_str=content_str, timestamp_ms=timestamp_ms)
+         md5_text = md5(clear_text.encode(encoding='UTF-8')).hexdigest()
+         sha1_text = sha1(md5_text.encode('utf-8')).hexdigest()
+         return sha1_text
+     
+     ```
+
+     
