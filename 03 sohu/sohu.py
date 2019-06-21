@@ -37,8 +37,7 @@ class LoginSohu:
         self.login_success = False
 
     def login(self):
-        """
-        执行登录操作
+        """执行登录操作
         :return: `rtype:dict` 登录结果
         """
         login_status_info = {'code': 1, 'state': 'failed', 'message': ''}
@@ -70,10 +69,7 @@ class LoginSohu:
         return login_status_info
 
     def get_user_info(self):
-        """
-        获取用户信息
-        :return: 登录成功`rtype:dict`, 登录失败`rtype:None`
-        """
+        """获取用户信息"""
         if self.login_success:
             user_resp = self.session.get(url=self.user_info_url, headers=self.pc_headers)
             user_info = user_resp.json()
@@ -84,25 +80,16 @@ class LoginSohu:
         pass
 
     def get_login_cookies(self):
-        """
-        获取用户登录后的cookies
-        :return:
-        """
+        """获取用户登录后的cookies"""
         return requests.utils.dict_from_cookiejar(self.session.cookies)
 
     @staticmethod
     def _get_password_md5(password):
-        """
-        密码的md5字符串
-        :return:
-        """
+        """密码的md5字符串"""
         return md5(password.encode(encoding='UTF-8')).hexdigest()
 
     def _init_session(self):
-        """
-        初始化会话对象
-        :return:
-        """
+        """初始化会话对象"""
         try:
             self.session.get(url=self.login_page_url, params=self.login_page_params, headers=self.mobile_headers)
         except requests.exceptions.RequestException:

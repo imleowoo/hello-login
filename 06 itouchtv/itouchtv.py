@@ -36,8 +36,7 @@ class LoginITouchTV:
         self.user_info = None
 
     def login(self) -> dict:
-        """
-        执行登录操作
+        """执行登录操作
         :return: 登录结果
         """
         login_status_info = {'code': 1, 'state': 'failed', 'message': ''}
@@ -51,25 +50,26 @@ class LoginITouchTV:
             if login_resp.status_code == 200:
                 # 获取登录响应信息
                 login_info = login_resp.json()
-                if login_info.get('status') == 200 and login_info.get('code') == 0 and login_info.get('message') == 'success':
+                if login_info.get('status') == 200 and login_info.get('code') == 0 and login_info.get(
+                        'message') == 'success':
                     self.token = login_info.get('data', {}).get('token')
                     login_status_info['code'] = 0
                     login_status_info['state'] = 'success'
-                    login_status_info['message'] = f'登录成功,本次登录生成token: {self.token}'
+                    login_status_info['message'] = '登录成功,本次登录生成token: %s' % self.token
                     self.login_success = True
                     self._set_user_ids(login_info)
                 elif login_info.get('status') == 400:
-                    login_status_info['message'] = '登录失败，response_code: %s, response_message: %s' % (login_info.get('code'),
-                                                                                                     login_info.get('message'))
+                    login_status_info['message'] = '登录失败，response_code: %s, response_message: %s' % (
+                    login_info.get('code'),
+                    login_info.get('message'))
                 else:
-                    login_status_info['message'] = f'登录失败,原因未知: {login_info}'
+                    login_status_info['message'] = f'登录失败,原因未知: %s' % login_info
             else:
                 login_status_info['message'] = '提交登录信息响应状态码异常'
             return login_status_info
 
     def get_user_info(self) -> dict or None:
-        """
-        获取用户信息
+        """获取用户信息
         :return: 登录成功`rtype:dict`, 登录失败`rtype:None`
         """
         if all([self.login_success, self.token, self.user_id, self.unique_id, self.media_id]):
@@ -90,21 +90,16 @@ class LoginITouchTV:
                 else:
                     print('获取用户信息失败, 详细信息：%s' % resp.text)
         else:
-            print('获取用户信息条件不完整，缺失参数: %s' % [self.login_success, self.token, self.user_id, self.unique_id, self.media_id])
+            print(
+                '获取用户信息条件不完整，缺失参数: %s' % [self.login_success, self.token, self.user_id, self.unique_id, self.media_id])
         return self.user_info
 
     def get_login_cookies(self) -> dict:
-        """
-        获取用户登录后的cookies
-        :return:
-        """
+        """获取用户登录后的cookies"""
         return requests.utils.dict_from_cookiejar(self.session.cookies)
 
     def _pre_login_options(self):
-        """
-        关于登录的预检请求
-        :return:
-        """
+        """关于登录的预检请求"""
         pre_login_headers = deepcopy(self.common_headers)
         pre_login_headers.update({'Access-Control-Request-Method': 'POST',
                                   'Access-Control-Request-Headers': 'mediaid,sign,timestamp,uniqueid,userid'})
@@ -121,7 +116,9 @@ class LoginITouchTV:
         media_list = login_info.get('data', {}).get('user', {}).get('media')
         if media_list and isinstance(media_list, list):
             self.media_id = media_list[0].get('id')
-        print(f'userId: {self.user_id}, uniqueId: {self.unique_id}, mediaId: {self.media_id}')
+        print('userId: {user_id}, uniqueId: {unique_id}, mediaId: {media_id}'.format(user_id=self.user_id,
+                                                                                     unique_id=self.unique_id,
+                                                                                     media_id=self.media_id))
 
     def _get_sign(self, timestamp_ms):
         """
@@ -129,7 +126,8 @@ class LoginITouchTV:
         :param timestamp_ms: 毫秒时间戳
         :return:
         """
-        clear_text = self.get_method_clear_text_format.format(token=self.token, user_id=self.user_id, timestamp_ms=timestamp_ms)
+        clear_text = self.get_method_clear_text_format.format(token=self.token, user_id=self.user_id,
+                                                              timestamp_ms=timestamp_ms)
         md5_text = md5(clear_text.encode(encoding='UTF-8')).hexdigest()
         sha1_text = sha1(md5_text.encode('utf-8')).hexdigest()
         return sha1_text

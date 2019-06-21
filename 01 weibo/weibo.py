@@ -41,10 +41,7 @@ class LoginSinaWeibo:
         self.user_info = None
 
     def login(self):
-        """
-        开始登陆
-        :return:
-        """
+        """开始登陆"""
         login_status_info = {'code': 1, 'state': 'failed', 'message': ''}
         login_form_data = self._pre_login()
         login_resp = self.session.post(url=self.real_login_url, data=login_form_data)
@@ -66,35 +63,24 @@ class LoginSinaWeibo:
         return login_status_info
 
     def get_user_info(self):
-        """
-        获取用户信息
+        """获取用户信息
         :return: 登录成功`rtype:dict`, 登录失败`rtype:None`
-        :return:
         """
         return self.user_info if self.login_success else None
 
     def get_login_cookies(self) -> dict:
-        """
-        获取用户登录后的cookies
-        :return:
-        """
+        """获取用户登录后的cookies"""
         return requests.utils.dict_from_cookiejar(self.session.cookies)
 
     def _init_session(self):
-        """
-        初始化请求会话
-        :return:
-        """
+        """初始化请求会话"""
         try:
             self.session.get(url=self.login_home_url)
         except requests.exceptions.RequestException:
             pass
 
     def _pre_login(self):
-        """
-        预登陆操作，获取相关参数
-        :return:
-        """
+        """预登陆操作，获取相关参数"""
         # 获取提交的用户名
         s_username = self._get_su()
         # 获取提交登陆时需要的参数
@@ -138,10 +124,7 @@ class LoginSinaWeibo:
         return login_form_data
 
     def _get_su(self):
-        """
-        获取真实的执行登陆操作时提交的用户名
-        :return:
-        """
+        """获取真实的执行登陆操作时提交的用户名"""
         # 用户名先进行url编码
         username_quote = quote(self.username)
         # 再经过base64进行编码
@@ -149,10 +132,7 @@ class LoginSinaWeibo:
         return username_base64.decode('utf-8')
 
     def _get_s_password(self, server_time, nonce, pubkey):
-        """
-        获取将密码加密后用于登录的字符串
-        :return:
-        """
+        """获取将密码加密后用于登录的字符串"""
         encode_password = (str(server_time) + "\t" + str(nonce) + "\n" + str(self.password)).encode("utf-8")
         public_key = rsa.PublicKey(int(pubkey, 16), int('10001', 16))
         encry_password = rsa.encrypt(encode_password, public_key)
@@ -160,10 +140,7 @@ class LoginSinaWeibo:
         return password.decode()
 
     def _get_login_form_data(self, su):
-        """
-        获取登陆form-data提交的参数`servertime`,`nonce`,`pubkey`,`rsakv`,`showpin`,etc
-        :return:
-        """
+        """获取登陆form-data提交的参数`servertime`,`nonce`,`pubkey`,`rsakv`,`showpin`,etc"""
         pre_login_params = {
             'entry': 'weibo',
             'rsakt': 'mod',

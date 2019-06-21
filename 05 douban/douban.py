@@ -25,8 +25,7 @@ class LoginDouban:
         self.user_info = None
 
     def login(self):
-        """
-        执行登录操作
+        """执行登录操作
         :return: `rtype:dict` 登录结果
         """
         login_status_info = {'code': 1, 'state': 'failed', 'message': ''}
@@ -62,8 +61,7 @@ class LoginDouban:
         return login_status_info
 
     def get_user_info(self):
-        """
-        获取用户信息
+        """获取用户信息
         :return: 登录成功`rtype:dict`, 登录失败`rtype:None`
         """
         if self.login_success and isinstance(self.user_info, dict):
@@ -76,17 +74,11 @@ class LoginDouban:
             return None
 
     def get_login_cookies(self) -> dict:
-        """
-        获取用户登录后的cookies
-        :return:
-        """
+        """获取用户登录后的cookies"""
         return requests.utils.dict_from_cookiejar(self.session.cookies)
 
     def _init_session(self):
-        """
-        初始化会话对象
-        :return:
-        """
+        """初始化会话对象"""
         try:
             self.session.get(url=self.home_url, headers=self.common_headers)
         except requests.exceptions.RequestException:

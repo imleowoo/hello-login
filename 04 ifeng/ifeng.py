@@ -80,27 +80,18 @@ class LoginIFeng:
         return login_status_info
 
     def get_user_info(self):
-        """
-        获取用户信息
-        :return:
-        """
+        """获取用户信息"""
         if self.login_success_flag and self.resp_data is not None:
             return {'username': self.resp_data.get('nickname', ''),
                     'profile': self.resp_data.get('url', '')}
         return None
 
     def get_login_cookies(self):
-        """
-        获取用户登录后的cookies
-        :return:
-        """
+        """获取用户登录后的cookies"""
         return requests.utils.dict_from_cookiejar(self.session.cookies)
 
     def _get_code_image(self):
-        """
-        获取验证码图片内容
-        :return:
-        """
+        """获取验证码图片内容"""
         captcha_resp = self.session.get(url=self.captcha_url)
         if captcha_resp.status_code == 200:
             open('captcha_image.jpg', 'wb').write(captcha_resp.content)
@@ -110,10 +101,7 @@ class LoginIFeng:
         return None
 
     def _set_form_data(self, captcha_text):
-        """
-        设置登陆时提交的form-data
-        :return:
-        """
+        """设置登陆时提交的form-data"""
         self.form_data['u'] = self.username
         self.form_data['k'] = self.password
         self.form_data['auth'] = captcha_text

@@ -55,10 +55,7 @@ class LoginToutiao:
         self.ticket = None
 
     def login(self):
-        """
-        登陆
-        :return:
-        """
+        """开始登陆"""
         login_status_info = {'code': 1, 'state': 'failed', 'message': ''}
         login_resp = self.session.post(url=self.submit_data_url, data=self.post_form_data, headers=self.mobile_headers)
         if login_resp.status_code == 200:
@@ -92,10 +89,7 @@ class LoginToutiao:
         return login_status_info
 
     def get_user_info(self):
-        """
-        获取用户信息
-        :return:
-        """
+        """获取用户信息"""
         return {'user_id': self.user_id} if self.login_success else None
 
     def get_login_cookies(self):
@@ -113,7 +107,7 @@ class LoginToutiao:
         """
         获取验证码的值
         - 这个方法可以修改为接入验证码识别接口或模型，以获取验证码图片的值
-        :param captcha_base64:
+        :param captcha_base64: 进行base64加密的验证码字符串
         :return:
         """
         captcha_data = 'data:image/gif;base64,' + captcha_base64
