@@ -118,6 +118,8 @@ class LoginSinaWeibo:
             captcha_resp = self.session.get(url=current_captcha_url)
             temp_captcha_file = 'weibo_captcha.jpg'
             open(temp_captcha_file, 'wb').write(captcha_resp.content)
+            # TODO 2019-06-24 开放验证码识别接口 http://captcha.faceme.site/sina
+            # 使用方式见README-IDEAs.md文档
             captcha_text = input('验证码保存路径为 %s\n验证码的值为> ' % os.path.abspath(temp_captcha_file))
             login_form_data['pcid'] = json_data.get('pcid')
             login_form_data['door'] = captcha_text

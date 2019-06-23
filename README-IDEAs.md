@@ -23,7 +23,30 @@
         return password.decode()
 ```
 
-3. 验证码：五位字母+数字的带干扰线验证码，需要手动输入或接入打码，或者搞一个模型来识别。
+3. 验证码：五位字母+数字的带干扰线验证码。
+
+   - 提供了一个新浪的验证码识别接口
+
+     ```http
+     # 新浪微博验证码识别接口，可在线测试
+     # 识别准确率98%以上，可用于训练原始数据模型
+     - API: http://captcha.faceme.site/sina
+     - Method: POST (multipart/form-data)
+     ```
+
+   - 验证码使用示例脚本
+
+     ```python
+     import requests
+     
+     img_path = 'fake-path/captcha.png'  # 验证码图片地址
+     file = {"captcha": ("captcha.png", open(img_path, 'rb'), "image/png")}
+     resp = requests.post(url='http://captcha.faceme.site/sina', files=file)
+     # print(resp.json())
+     print(resp.text)
+     ```
+
+     
 
 ### 02 toutiao-今日头条
 
