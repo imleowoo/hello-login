@@ -48,6 +48,8 @@
 
      
 
+----
+
 ### 02 toutiao-今日头条
 
 1. `Web`页面中，`PC`版登录存在滑动验证码。由于在本例程中避免使用`Selenium`进行操作，所以更换`User-Agent`采用移动端`Web`页面可以避免出现滑动验证码，与之代替的是图形验证码；
@@ -59,6 +61,10 @@
 2. 用户名和密码均未进行任何加密；
 
 3. 通过移动端`Web`页面登录生成的`Cookies`信息可以直接在`PC-Web`页面上使用。
+
+
+
+----
 
 ### 03 sohu-搜狐新闻
 
@@ -75,6 +81,10 @@
            return md5(password.encode(encoding='UTF-8')).hexdigest()
    ```
 
+
+
+----
+
 ### 04 ifeng-凤凰新闻
 
 1. 采用`PC-Web`页面完成，账号密码均未做加密处理；
@@ -85,9 +95,17 @@
    验证码链接：https://id.ifeng.com/public/authcode
    ```
 
+
+
+-----
+
 ### 05 douban-豆瓣
 
 1. 账号密码均未做任何加密处理，并且无验证码出现。
+
+
+
+------
 
 ### 06 itouchtv-触电新闻媒体平台
 
@@ -140,4 +158,41 @@
      
      ```
 
-     
+   
+
+-----
+   
+### 07 github-GitHub
+
+1. 采用`PC-Web`页面完成，账号密码均未做加密处理，且不需要验证码；
+2. 登录需要提取隐藏表单中的`authenticity_token`
+   
+   ```html
+   <form action="/session" accept-charset="UTF-8" method="post">
+       <input name="utf8" type="hidden" value="&#x2713;"/>
+       <input type="hidden" name="authenticity_token" value="rzuceXctjkBoZGUcxGwtNJsgd8bor3GSVHO3GsBMMNpfVNHRAassqVO6rUETWiaiFqW0EUdMBgl1qJAp3ppWlw=="/>
+       <div class="auth-form-header p-0">
+           <h1>Sign in to GitHub</h1>
+       </div>
+       <div id="js-flash-container"></div>
+       <div class="auth-form-body mt-3">
+           <label for="login_field">Username or email address
+           </label>
+           <input type="text" name="login" id="login_field" class="form-control input-block" tabindex="1" autocapitalize="off" autocorrect="off" autofocus="autofocus"/>
+           <label for="password">
+               Password <a class="label-link" href="/password_reset">Forgot password?</a>
+           </label>
+           <input type="password" name="password" id="password" class="form-control form-control input-block" tabindex="2"/>
+           <input type="hidden" class="js-webauthn-support" name="webauthn-support" value="unknown">
+           <input type="submit" name="commit" value="Sign in" tabindex="3" class="btn btn-primary btn-block" data-disable-with="Signing in…"/>
+       </div>
+   </form>
+   ```
+   
+   
+   
+   
+   
+   
+   
+   
