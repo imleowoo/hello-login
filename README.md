@@ -8,7 +8,7 @@
 
 #### 前言
 
-由于`xchaoinfo/fuck-login`的项目不再维护了，
+由于原`xchaoinfo/fuck-login`的项目不再维护了，
 
 所以利用业余时间参考`xchaoinfo`大神的代码重新做起一些常见站点的登录，希望一起交流学习。
 
