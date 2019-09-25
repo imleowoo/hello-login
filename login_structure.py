@@ -2,9 +2,7 @@ import requests
 
 
 class LoginWebsiteName:
-    """
-    登录程序结构
-    """
+    """登录程序结构"""
     # 登录操作会话对象
     session = requests.session()
 
@@ -14,22 +12,19 @@ class LoginWebsiteName:
         pass
 
     def login(self) -> dict:
-        """
-        执行登录操作
+        """执行登录操作
         :return: `rtype:dict` 登录结果
         """
         pass
 
     def get_user_info(self) -> dict or None:
-        """
-        获取用户信息
+        """获取用户信息
         :return: 登录成功`rtype:dict`, 登录失败`rtype:None`
         """
         pass
 
     def get_login_cookies(self) -> dict:
-        """
-        获取用户登录后的cookies
+        """获取用户登录后的cookies
         :return:
         """
         pass

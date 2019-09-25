@@ -161,12 +161,12 @@
    
 
 -----
-   
+
 ### 07 github-GitHub
 
 1. 采用`PC-Web`页面完成，账号密码均未做加密处理，且不需要验证码；
 2. 登录需要提取隐藏表单中的`authenticity_token`
-   
+  
    ```html
    <form action="/session" accept-charset="UTF-8" method="post">
        <input name="utf8" type="hidden" value="&#x2713;"/>
@@ -188,11 +188,36 @@
        </div>
    </form>
    ```
+
+### 08 zhongguancun-中关村在线
+
+1. 采用`PC-Web`登陆，其中密码拼接了字符串进行了`md5`加密摘要；
+
+   <img src="/Users/leowoo/PycharmProjects/fuck-login/08 zhongguancun/login_js.png" alt="login_js" style="zoom:80%;" />
+
+   ```python
+   from hashlib import md5
+   # 将密码明文+字符串zol拼接后进行md5加密生成32位摘要
+   password = md5((password_text + 'zol').encode(encoding='UTF-8')).hexdigest()
+   ```
+
    
-   
-   
-   
-   
-   
-   
-   
+
+   1. 登录时需要携带`Cookie`才能登陆，否则会响应账号密码错误的信息
+
+   - 诸多`Cookie`中`ip_ck`为必需的`cookie`，非本地生成，请求`http://js.zol.com.cn/pvn/pv.ht`得到
+
+     ```python
+     import time
+     import requests
+     
+     # 获取cookies中的ip_ck，经测试该字段为提交登录时的必需字段
+     resp = requests.get(url=f'http://js.zol.com.cn/pvn/pv.ht?&t={int(time.time() / 1000)}&c=')
+     if resp.status_code == 200:
+         ip_ck = resp.json().get('ipck')
+     ```
+
+     
+
+
+
