@@ -11,7 +11,7 @@ class LoginWebsiteName:
     # 登录操作会话对象
     session = requests.session()
     common_headers = {
-        'Host': '07 github.com',
+        'Host': 'github.com',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
 
     def __init__(self, username: str, password: str, **kwargs):
