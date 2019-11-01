@@ -193,7 +193,7 @@
 
 1. 采用`PC-Web`登陆，其中密码拼接了字符串进行了`md5`加密摘要；
 
-   <img src="/Users/leowoo/PycharmProjects/fuck-login/08 zhongguancun/login_js.png" alt="login_js" style="zoom:80%;" />
+   <img src="./08 zhongguancun/login_js.png" alt="login_js" style="zoom:80%;" />
 
    ```python
    from hashlib import md5
