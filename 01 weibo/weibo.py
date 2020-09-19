@@ -2,12 +2,13 @@
 # @Author : Leo
 
 import os
-import rsa
 import time
 import base64
-import requests
 import binascii
 from urllib.parse import quote
+
+import rsa
+import requests
 
 
 class LoginSinaWeibo:

@@ -1,6 +1,7 @@
 import time
-import requests
 from hashlib import md5
+
+import requests
 
 
 class LoginSohu:

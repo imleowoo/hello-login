@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # @Author : Leo
 
-import requests
 from urllib.parse import urlparse, parse_qs
+
+import requests
 
 
 class LoginToutiao:

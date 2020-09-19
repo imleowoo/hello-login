@@ -1,7 +1,8 @@
 import time
-import requests
 from copy import deepcopy
 from hashlib import md5, sha1
+
+import requests
 
 
 class LoginITouchTV:
