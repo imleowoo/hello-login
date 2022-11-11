@@ -1,11 +1,11 @@
-# Fuck Login !
+# Fuxk Login !
 
 [![GitHub stars](https://img.shields.io/github/stars/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/stargazers)	[![GitHub forks](https://img.shields.io/github/forks/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/network)	[![GitHub issues](https://img.shields.io/github/issues/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login/issues)	[![GitHub license](https://img.shields.io/github/license/IMWoolei/fuck-login.svg)](https://github.com/IMWoolei/fuck-login)	![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django.svg)	[![Email](https://img.shields.io/badge/email-Leo-orange.svg)](mailto:imwoolei@outlook.com)
 
 
 ## 2020-09-19 更新
 
-很抱歉这个登陆脚本项目也没能持续更新下去，估计很多失效了。旧脚本在 `deprecated` 分支。
+这个登陆脚本项目也没能持续更新下去，估计很多失效了。旧脚本在 `deprecated` 分支。
 
 ### 1.介绍
 
